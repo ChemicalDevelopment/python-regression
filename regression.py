@@ -1,12 +1,14 @@
 import numpy as np
 from scipy.optimize import leastsq
 import matplotlib.pyplot as plt
-
+import sys
 import random
 
 # the model we try to fit
 def func(X, P):
-    return X * X * P[0] + X * P[1] + P[2]
+    a, b, c = P
+    return eval(sys.argv[1])
+    #return X * X * P[0] + X * P[1] + P[2]
 
 # the residue. Minimize this squared
 def resid(P, Y, T):
