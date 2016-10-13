@@ -45,6 +45,6 @@ def plot(x, y, result, dfmt):
 
 	plt.suptitle(fmt_str(y, fx), fontsize=20)
 	binwidth = 1
-	plt.hist(yr, bins=range(int(min(yr)), int(max(yr) + binwidth), binwidth))
+	plt.hist(yr, bins=range(int(min(yr)), int(max(yr) + binwidth + 1), binwidth))
 
 	plt.show()

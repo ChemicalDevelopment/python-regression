@@ -17,17 +17,19 @@ import rlib
 
 parser = argparse.ArgumentParser(description='ChemicalDevelopment python regression.')
 # commandline args
-parser.add_argument("--file", type=str, default="data.csv", help="use a file for input data")
+parser.add_argument("--file", type=str, default="", help="use a file for input data")
 parser.add_argument("--dateformat", type=str, default="", help="use special date format")
 parser.add_argument("--xcolumn", type=str, default="0",help="x column for fitting. Use int for index, or string for name of column")
+parser.add_argument("--xdata", type=str, nargs='+', help="x data, just in list")
 parser.add_argument("--ycolumn", type=str, default="1",help="y column for fitting. Use int for index, or string for name of column")
+parser.add_argument("--ydata", type=str, nargs='+', help="y data, just in list")
 parser.add_argument("--model", type=str, default="a*x+b", help="model for fitting. Use a, b, c, d then use p[i]. Set this number below")
 parser.add_argument("--parameters", type=int, default=4, help="number of parameters")
 
 args = parser.parse_args()
 
 # create refs
-file = args.file; model = args.model; xcol = args.xcolumn; ycol = args.ycolumn; dfmt = args.dateformat; parameters = args.parameters
+file = args.file; model = args.model; xcol = args.xcolumn; ycol = args.ycolumn; dfmt = args.dateformat; parameters = args.parameters; xdata = args.xdata; ydata = args.ydata
 
 # minimum of 4 parameters
 if parameters < 4:
@@ -37,7 +39,7 @@ if parameters < 4:
 print("Running python regression now using file %s and model y~%s" % (file, model))
 
 # unpack data from file
-x, y = input.get_data(file, dfmt, xcol, ycol)
+x, y = input.get_data(file, dfmt, xcol, ycol, xdata, ydata)
 
 # perfrom regression
 result = rlib.regress_data(parameters, x, y, model)[0]
