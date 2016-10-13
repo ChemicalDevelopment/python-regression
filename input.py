@@ -2,8 +2,10 @@ import csv
 import numpy as np
 from datetime import datetime
 
+# Jan 1 1970 in datetime
 epoch = datetime.utcfromtimestamp(0)
 
+# gets x array, with support for dfmt
 def get_x_array(data, xcol, dfmt):
 	try:
 		xcol_i = int(xcol)
@@ -17,6 +19,7 @@ def get_x_array(data, xcol, dfmt):
 		ret = np.array([float(data[i][xcol_i]) for i in range (1, len(data))])
 	return ret
 
+# gets y array
 def get_y_array(data, ycol):
 	try:
 		ycol_i = int(ycol)
@@ -25,6 +28,7 @@ def get_y_array(data, ycol):
 	#Cast to float
 	return np.array([float(data[i][ycol_i]) for i in range (1, len(data))])
 
+# gets data in tuple (x, y)
 def get_data(file, dfmt, xcol, ycol):
 	csvfile = open(file, 'rb')
 	rdr = csv.reader(csvfile, delimiter=',', quotechar="|")
