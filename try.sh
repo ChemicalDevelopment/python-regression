@@ -1,0 +1,1 @@
+curl "http://ichart.finance.yahoo.com/table.csv?d=6&e=1&f=$2&g=d&a=7&b=19&c=2004%20&ignore=.csv&s=$1" > data.csv
