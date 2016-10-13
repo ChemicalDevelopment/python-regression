@@ -11,7 +11,7 @@ def function(p, x):
 
 # returns residual
 def residual(p, y, x):
-	return (y - function(p, x)) ** 2
+	return (y - function(p, x))
 
 # regresses the data and returns relevant info
 def regress_data(params, x, y, _model):
