@@ -44,6 +44,7 @@ x, y = input.get_data(file, dfmt, xcol, ycol, xdata, ydata)
 # perfrom regression
 result = rlib.regress_data(parameters, x, y, model)[0]
 
+
 # print all our info
 output.print_info(model, result)
 

@@ -17,19 +17,29 @@ def print_info(model, res):
 # formats a string with average, stddev, median, and r^2 value
 def fmt_str(y, fx):
 	data = y - fx
-	s_tot = np.sum((y - np.average(y)) ** 2)
-	s_res = np.sum((data) ** 2)
-	return "$\mu$=%.2f $\sigma$=%.2f $\widetilde{x}$=%.2f $R^2$=%.2f" % (np.average(data), np.std(data), np.median(data), (1 - (s_res) / (s_tot)))
+	return "$\mu$=%.2f $\widetilde{x}$=%.2f $\sigma$=%.2f $R^2$=%.2f" % (np.average(data), np.median(data), np.std(data), rlib.r2(y, fx))
+
+# prints technical details
+def print_details(x, y, result):
+	fx = rlib.function(result, x)
+	data = y - fx
+	print "\n\nFit\n~~~~"
+	print "R^2: %.2f" % rlib.r2(y, fx)
+	print "\n\nResiduals\n~~~~"
+	print "Mean Residual: %.2f" % np.average(data)
+	print "Median Residual: %.2f" % np.median(data)
+	print "Standard Deviation Residual: %.2f" % np.std(data)
+	print "\n\n"
 
 # generates revelant plots
 def plot(x, y, result, dfmt):
+	print_details(x, y, result)
 	fx = rlib.function(result, x)
 	if dfmt == "":
 		x_t = x
 	else:
 		x_t = x + 1970
 	yr = y - fx
-
 	fig1 = plt.figure("Data")
 	plt.suptitle('Data vs Model', fontsize=20)
 	
