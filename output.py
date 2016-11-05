@@ -2,6 +2,17 @@ import matplotlib.pyplot as plt
 import rlib
 import numpy as np
 
+def sub_model(model, res):
+	a, b, c, d = res[:4]
+	rr = model
+	rr = rr.replace("a", str(a))
+	rr = rr.replace("b", str(b))
+	rr = rr.replace("c", str(c))
+	rr = rr.replace("d", str(d))
+	for i in range(0, len(res)):
+		rr = rr.replace("p[%d]" % i, str(res[i]))
+	return rr
+
 # prints out the model, and the best fit coefficients
 def print_info(model, res):
     pa, pb, pc, pd = res[:4]
@@ -11,6 +22,7 @@ def print_info(model, res):
     print ("b ~ %f" % pb)
     print ("c ~ %f" % pc)
     print ("d ~ %f" % pd)
+    print ("\n Model with params: %s" % sub_model(model, res))
     print ("Full array:")
     print res
 
