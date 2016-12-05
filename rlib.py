@@ -24,4 +24,4 @@ def regress_data(params, x, y, _model):
 def r2(y, fx):
 	s_r = np.sum((y - fx) ** 2)
 	s_t = np.sum((y - np.average(y)) ** 2)
-	return 1 - s_r / s_t
+	return (1 - s_r / s_t) ** 2
