@@ -53,6 +53,7 @@ def plot(x, y, result, dfmt):
 		x_t = x + 1970
 	yr = y - fx
 	fig1 = plt.figure("Data")
+
 	plt.suptitle('Data vs Model', fontsize=20)
 	
 	frame1=fig1.add_axes((.1,.3,.8,.6))
